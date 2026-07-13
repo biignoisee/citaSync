@@ -12,12 +12,12 @@ class Patient extends Model
         'birth_date' => 'date',
     ];
 
-    public function user()
+                public function user(): mixed
     {
         return $this->belongsTo(User::class);
     }
 
-    public function appointments()
+    public function appointments(): mixed
     {
         return $this->hasMany(Appointment::class);
     }

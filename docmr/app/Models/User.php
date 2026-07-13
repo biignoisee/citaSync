@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
 
 /**
  * @property int $id
@@ -27,7 +27,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasFactory, Notifiable;
 
     /**
      * Get the attributes that should be cast.
@@ -42,14 +42,15 @@ class User extends Authenticatable
         ];
     }
 
-    // Un usuario puede ser doctor o paciente
-    public function doctor(): mixed
+    /**
+     * Get the user's initials
+     */
+    public function initials(): string
     {
-        return $this->hasOne(Doctor::class);
-    }
+        $initials = Str::initials($this->name, true);
 
-    public function patient(): mixed
-    {
-        return $this->hasOne(Patient::class);
+        return Str::length($initials) > 1
+            ? Str::substr($initials, 0, 1).Str::substr($initials, -1)
+            : $initials;
     }
 }

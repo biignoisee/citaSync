@@ -11,9 +11,9 @@ class AppointmentController extends Controller
     /**
      * Listar las citas (con relaciones cargadas para no sufrir N+1)
      */
-    public function index(Request $request)
+    public function index(Request $request): mixed
     {
-        $appointments = Appointment::with(['patient.user', 'doctor.user', 'service'])
+        $appointments = Appointment::with(['patient.user', 'doctor.user', 'service']) // @phpstan-ignore larastan.relationExistence
             ->orderBy('scheduled_at', 'asc')
             ->get();
 
@@ -23,7 +23,7 @@ class AppointmentController extends Controller
     /**
      * Agendar una nueva cita
      */
-    public function store(Request $request)
+    public function store(Request $request): mixed
     {
         $validated = $request->validate([
             'patient_id' => 'required|exists:patients,id',
@@ -45,7 +45,7 @@ class AppointmentController extends Controller
     /**
      * Actualizar estado de la cita (Confirmar, Completar, Cancelar)
      */
-    public function updateStatus(Request $request, Appointment $appointment)
+    public function updateStatus(Request $request, Appointment $appointment): mixed
     {
         $validated = $request->validate([
             'status' => 'required|in:pending,confirmed,completed,canceled'

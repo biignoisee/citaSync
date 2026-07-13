@@ -45,10 +45,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('patient_id')->constrained()->cascadeOnDelete();
             $table->foreignId('doctor_id')->constrained()->cascadeOnDelete();
-            
+
             // REGLA ESTRICTA: La cita hereda de un servicio sí o sí
-            $table->foreignId('service_id')->constrained()->cascadeOnDelete(); 
-            
+            $table->foreignId('service_id')->constrained()->cascadeOnDelete();
+
             $table->dateTime('scheduled_at');
             $table->enum('status', ['pending', 'confirmed', 'completed', 'canceled'])->default('pending');
             $table->text('notes')->nullable();
