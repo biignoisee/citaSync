@@ -9,6 +9,6 @@ necesitamos usuario principal que se logueee
     user (ya esta)
     doctores (id, dni, nombres, ubicacion, especialidad, disponibilidad(rango fechas))
     tipo_consulta (id, tipo_consulta, precio)
-    pacientes  (id, nombres, telefono, dni, tipo_consulta_id)
-    cita medica (doctor_id, paciente_id,  fecha_hora, estado, notas_ai)
+    pacientes  (id, nombres,apellidos, telefono, dni, tipo_consulta_id)
+    cita medica (doctor_id, paciente_id,  appointment_at, estado, notas_ai)
 

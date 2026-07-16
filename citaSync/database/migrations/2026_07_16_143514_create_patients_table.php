@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
+            $table->string('nombres');
+            $table->string('apellidos');
+            $table->string('telefono')->unique();
+            $table->string('dni')->unique();
+            $table->foreignId('consultation_type_id')
+                ->constrained('consultation_types')
+                ->onDelete('restrict');
             $table->timestamps();
         });
     }

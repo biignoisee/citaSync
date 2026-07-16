@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('consultation_types', function (Blueprint $table) {
             $table->id();
+            $table->string('consultation_name');
+            $table->float('price');
             $table->timestamps();
         });
     }

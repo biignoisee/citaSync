@@ -7,30 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Doctor extends Model
+class Patient extends Model
 {
-    /** @use HasFactory<\Database\Factories\DoctorFactory> */
+    /** @use HasFactory<\Database\Factories\PatientsFactory> */
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'dni',
         'nombres',
-        'ubicacion',
-        'speciality',
-        'disponibilidad',
+        'apellidos',
+        'telefono',
+        'dni',
+        'consultation_type_id',
     ];
 
-    protected function casts(): array
+    public function consultationType(): BelongsTo
     {
-        return [
-            'disponibilidad' => 'array',
-        ];
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(ConsultationType::class);
     }
 
     public function medicalAppointments(): HasMany

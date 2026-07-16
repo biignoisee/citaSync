@@ -6,9 +6,9 @@ use App\Models\Patients;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Patients>
+ * @extends Factory<Patient>
  */
-class PatientsFactory extends Factory
+class PatientFactory extends Factory
 {
     /**
      * Define the model's default state.

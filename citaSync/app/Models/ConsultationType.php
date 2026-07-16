@@ -9,4 +9,9 @@ class ConsultationType extends Model
 {
     /** @use HasFactory<\Database\Factories\ConsultationTypeFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'consultation_name',
+        'price',
+    ];
 }
