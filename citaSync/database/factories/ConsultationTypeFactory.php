@@ -18,7 +18,14 @@ class ConsultationTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'consultation_name' => fake()->randomElement([
+                'General Checkup',
+                'Dermatology',
+                'Pediatrics',
+                'Cardiology',
+                'Dentistry'
+            ]),
+            'price' => fake()->randomFloat(2, 20, 200), // Precio entre 20 y 200
         ];
     }
 }

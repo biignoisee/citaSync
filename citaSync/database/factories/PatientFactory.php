@@ -2,7 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Patients;
+use App\Models\ConsultationType;
+use App\Models\Patient;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +19,11 @@ class PatientFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nombres' => fake()->firstName(),
+            'apellidos' => fake()->lastName(),
+            'telefono' => fake()->unique()->phoneNumber(),
+            'dni' => fake()->unique()->numerify('########'), // Genera 8 dígitos aleatorios
+            'consultation_type_id' => ConsultationType::factory(),
         ];
     }
 }
