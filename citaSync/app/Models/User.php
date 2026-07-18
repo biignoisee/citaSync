@@ -59,6 +59,11 @@ class User extends Authenticatable
             : $initials;
     }
 
+    public function doctor()
+    {
+        return $this->hasOne(Doctor::class);
+    }
+
     // ===========Helpers==================
     public function isDoctor(): bool
     {
