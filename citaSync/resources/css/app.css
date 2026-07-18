@@ -1,4 +1,2 @@
 @import "tailwindcss";
 @import "@fontsource/geist-sans";
-
-@plugin "@tailwindcss/forms";

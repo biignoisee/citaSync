@@ -23,7 +23,7 @@ class ConsultationTypeFactory extends Factory
                 'Dermatology',
                 'Pediatrics',
                 'Cardiology',
-                'Dentistry'
+                'Dentistry',
             ]),
             'price' => fake()->randomFloat(2, 20, 200), // Precio entre 20 y 200
         ];
