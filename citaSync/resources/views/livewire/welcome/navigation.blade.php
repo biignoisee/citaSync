@@ -1,26 +1,29 @@
-<nav class="-mx-3 flex flex-1 justify-end">
-    @auth
-        <a
-            href="{{ url('/dashboard') }}"
-            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-        >
-            Dashboard
-        </a>
-    @else
-        <a
-            href="{{ route('login') }}"
-            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-        >
-            Log in
-        </a>
+<nav class="mx-auto flex h-16 items-center justify-between px-6">
 
-        @if (Route::has('register'))
-            <a
-                href="{{ route('register') }}"
-                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-            >
-                Register
+    <a href="{{ url('/') }}" class="flex items-center gap-3">
+        <img src="{{ asset('images/logo.png') }}" alt="CitaSync Logo" class="h-10 w-10">
+
+        <span class="text-xl font-bold tracking-tight">
+            CitaSync
+        </span>
+    </a>
+
+    <div class="flex items-center gap-2">
+        @auth
+            <a href="{{ url('/dashboard') }}" class="rounded-md px-3 py-2 text-black transition hover:text-gray-600">
+                Dashboard
             </a>
-        @endif
-    @endauth
+        @else
+            <a href="{{ route('login') }}" class="rounded-md px-3 py-2 text-black transition hover:text-gray-600">
+                Iniciar sesión
+            </a>
+
+            @if (Route::has('register'))
+                <a href="{{ route('register') }}" class="rounded-md px-3 py-2 text-black transition hover:text-gray-600">
+                    Registrarse
+                </a>
+            @endif
+        @endauth
+    </div>
+
 </nav>
