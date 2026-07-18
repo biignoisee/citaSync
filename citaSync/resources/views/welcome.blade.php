@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CitaSync</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @fluxAppearance
 </head>
 
 <body class="min-h-screen bg-gray-50 text-gray-900">
@@ -28,8 +29,10 @@
                 </p>
             </div>
         </main>
-
     </div>
+
+    @livewireScripts
+    @fluxScripts
 </body>
 
 </html>
