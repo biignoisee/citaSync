@@ -1,14 +1,20 @@
 ok aplicacion de agendados de cita ...
 
-necesitamos usuario principal que se logueee 
+necesitamos usuario principal que se logueee
     user (roles)
         admin (yo)
-        doctores 
-    
+        doctores
+
 -- entidades
     user (ya esta)
     doctores (id, dni, nombres, ubicacion, especialidad, disponibilidad(rango fechas))
     tipo_consulta (id, tipo_consulta, precio)
     pacientes  (id, nombres,apellidos, telefono, dni, tipo_consulta_id)
     cita medica (doctor_id, paciente_id,  appointment_at, estado, notas_ai)
+
+
+
+---
+martes 21
+Implementar Factoriesss y seeders
 

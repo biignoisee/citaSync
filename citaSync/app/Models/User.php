@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Enums\UserRole;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
@@ -43,9 +45,9 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'role' => UserRole::class,
         ];
     }
-
     /**
      * Get the user's initials
      */
@@ -58,20 +60,31 @@ class User extends Authenticatable
             : $initials;
     }
 
+    // Relationships
     public function doctor()
     {
         return $this->hasOne(Doctor::class);
     }
 
+
     // ===========Helpers==================
     public function isDoctor(): bool
     {
-        return $this->role === 'doctor';
+        return $this->role === UserRole::DOCTOR;
     }
 
     public function isAdmin(): bool
     {
-        return $this->role === 'admin';
+        return $this->role === UserRole::ADMIN;
     }
     // ====================================
+
+
+    public function canAccessDashboard(): bool
+    {
+        return in_array($this->role, [
+            UserRole::ADMIN,
+            UserRole::DOCTOR,
+        ], true);
+    }
 }
