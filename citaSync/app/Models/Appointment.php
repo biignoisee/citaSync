@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Database\Factories\MedicalAppointmentFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class MedicalAppointment extends Model
+class Appointment extends Model
 {
-    /** @use HasFactory<MedicalAppointmentFactory> */
+    /** @use HasFactory<Appointment> */
     use HasFactory;
 
     protected $fillable = [
@@ -18,6 +17,7 @@ class MedicalAppointment extends Model
         'appointment_at',
         'status',
         'ai_notes',
+        'consultation_type_id',
     ];
 
     // Indicar es una fecha
@@ -36,5 +36,10 @@ class MedicalAppointment extends Model
     public function patient(): BelongsTo
     {
         return $this->belongsTo(Patient::class);
+    }
+
+    public function consultationType(): BelongsTo
+    {
+        return $this->belongsTo(ConsultationType::class);
     }
 }

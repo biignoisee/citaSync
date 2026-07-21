@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('medical_appointments', function (Blueprint $table) {
+        Schema::create('appointments', function (Blueprint $table) {
             $table->id();
 
             // Relaciones
@@ -22,7 +22,9 @@ return new class extends Migration
             $table->dateTime('appointment_at'); // fecha y hora
             $table->string('status')->default('pending'); // pending, confirmed, cancelled, completed
             $table->text('ai_notes')->nullable(); // Para el resumen que genere la IA
-
+            $table->foreignId('consultation_type_id')
+                ->constrained('consultation_types')
+                ->onDelete('restrict');
             $table->timestamps();
         });
     }

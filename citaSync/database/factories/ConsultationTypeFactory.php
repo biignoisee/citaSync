@@ -19,13 +19,12 @@ class ConsultationTypeFactory extends Factory
     {
         return [
             'consultation_name' => fake()->randomElement([
-                'General Checkup',
-                'Dermatology',
-                'Pediatrics',
-                'Cardiology',
-                'Dentistry',
+                'Refracción (Medida de lentes)',
+                'Consulta Oftalmológica',
+                'Consulta Oculoplástica',
+                'Cirugía',
             ]),
-            'price' => fake()->randomFloat(2, 20, 200), // Precio entre 20 y 200
+            'price' => fake()->randomFloat(2, 20, 100), // Precio entre 20 y 100
         ];
     }
 }

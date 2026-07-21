@@ -34,8 +34,8 @@ class Doctor extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function medicalAppointments(): HasMany
+    public function appointments(): HasMany
     {
-        return $this->hasMany(MedicalAppointment::class);
+        return $this->hasMany(Appointment::class);
     }
 }

@@ -2,15 +2,16 @@
 
 namespace Database\Factories;
 
+use App\Models\Appointment;
+use App\Models\ConsultationType;
 use App\Models\Doctor;
-use App\Models\MedicalAppointment;
 use App\Models\Patient;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<MedicalAppointment>
+ * @extends Factory<Appointment>
  */
-class MedicalAppointmentFactory extends Factory
+class AppointmentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,12 +21,14 @@ class MedicalAppointmentFactory extends Factory
     public function definition(): array
     {
         return [
-            'doctor_id' => Doctor::factory(),
-            'patient_id' => Patient::factory(),
+            'doctor_id' => Doctor::query()->inRandomOrder()->value('id')
+                ?? Doctor::factory(),
+            'patient_id' => Patient::query()->inRandomOrder()->value('id')
+                ?? Patient::factory(),
             'appointment_at' => fake()->dateTimeBetween('now', '+7 days'),
-
             'status' => fake()->randomElement(['pending', 'confirmed', 'completed']),
-
+            'consultation_type_id' => ConsultationType::query()->inRandomOrder()->value('id')
+                ?? ConsultationType::factory(),
             'ai_notes' => null,
         ];
     }

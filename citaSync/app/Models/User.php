@@ -48,6 +48,7 @@ class User extends Authenticatable
             'role' => UserRole::class,
         ];
     }
+
     /**
      * Get the user's initials
      */
@@ -56,7 +57,7 @@ class User extends Authenticatable
         $initials = Str::initials($this->name, true);
 
         return Str::length($initials) > 1
-            ? Str::substr($initials, 0, 1) . Str::substr($initials, -1)
+            ? Str::substr($initials, 0, 1).Str::substr($initials, -1)
             : $initials;
     }
 
@@ -65,7 +66,6 @@ class User extends Authenticatable
     {
         return $this->hasOne(Doctor::class);
     }
-
 
     // ===========Helpers==================
     public function isDoctor(): bool
@@ -78,7 +78,6 @@ class User extends Authenticatable
         return $this->role === UserRole::ADMIN;
     }
     // ====================================
-
 
     public function canAccessDashboard(): bool
     {

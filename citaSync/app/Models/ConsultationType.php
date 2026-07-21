@@ -17,8 +17,8 @@ class ConsultationType extends Model
         'price',
     ];
 
-    public function patients(): HasMany
+    public function appointments(): HasMany
     {
-        return $this->hasMany(Patient::class);
+        return $this->hasMany(Appointment::class);
     }
 }

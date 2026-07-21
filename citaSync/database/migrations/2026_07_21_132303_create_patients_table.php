@@ -17,9 +17,7 @@ return new class extends Migration
             $table->string('apellidos');
             $table->string('telefono')->unique();
             $table->string('dni')->unique();
-            $table->foreignId('consultation_type_id')
-                ->constrained('consultation_types')
-                ->onDelete('restrict');
+
             $table->timestamps();
         });
     }
