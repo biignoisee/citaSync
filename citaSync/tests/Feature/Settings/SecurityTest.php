@@ -4,8 +4,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Livewire;
 
-beforeEach(function () {
-});
+beforeEach(function () {});
 
 test('security settings page can be rendered', function () {
     $user = User::factory()->create();
@@ -42,6 +41,22 @@ test('security settings page renders without two factor when feature is disabled
 });
 
 test('two factor authentication disabled when confirmation abandoned between requests', function () {
+    $user = User::factory()->create();
+
+    $user->forceFill([
+        'two_factor_secret' => encrypt('secret'),
+        'two_factor_recovery_codes' => encrypt(json_encode(['recovery-code-1'])),
+        'two_factor_confirmed_at' => null,
+    ])->save();
+
+    $this->actingAs($user)
+        ->withSession(['auth.password_confirmed_at' => time()]);
+
+    Livewire::test('pages::settings.two-factor');
+
+    expect($user->refresh()->two_factor_secret)->toBeNull()
+        ->and($user->two_factor_recovery_codes)->toBeNull()
+        ->and($user->two_factor_confirmed_at)->toBeNull();
 });
 
 test('password can be updated', function () {
