@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             // Relaciones
-            $table->foreignId('doctor_id')->constrained('doctores')->restrictOnDelete();
+            $table->foreignId('doctor_id')->constrained('doctors')->restrictOnDelete();
             $table->foreignId('patient_id')->constrained('patients')->restrictOnDelete();
 
             // Datos de la cita
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('medical_appointments');
+        Schema::dropIfExists('appointments');
     }
 };

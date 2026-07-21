@@ -19,15 +19,10 @@ class DoctorFactory extends Factory
             'user_id' => User::factory()->state([
                 'role' => 'doctor',
             ]),
-
             'dni' => fake()->unique()->numerify('########'),
-
             'nombres' => fake()->name(),
-
             'ubicacion' => fake()->city(),
-
             'speciality' => 'Oftalmología',
-
             'disponibilidad' => [
                 'lunes' => ['08:00-12:00', '14:00-18:00'],
                 'martes' => ['08:00-12:00'],

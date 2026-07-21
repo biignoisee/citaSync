@@ -27,8 +27,7 @@ class AppointmentFactory extends Factory
                 ?? Patient::factory(),
             'appointment_at' => fake()->dateTimeBetween('now', '+7 days'),
             'status' => fake()->randomElement(['pending', 'confirmed', 'completed']),
-            'consultation_type_id' => ConsultationType::query()->inRandomOrder()->value('id')
-                ?? ConsultationType::factory(),
+            'consultation_type_id' => ConsultationType::query()->inRandomOrder()->value('id'),
             'ai_notes' => null,
         ];
     }
